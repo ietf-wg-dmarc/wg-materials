@@ -2,7 +2,7 @@
 ---
 title: DMARC-interim-2020-01
 ---
-# Domain-based Message Authentication, Reporting & Conformance (DMARC) Working Group
+# Domain-based Message Authentication, Reporting & Conformance (DMARC)
 ## interim-2020-dmarc-01
 
 * Date: 11 June  2020
@@ -12,7 +12,7 @@ title: DMARC-interim-2020-01
 
 ###
 * Jabber:  dmarc@jabber.ietf.org
-* EtherPad: 
+* EtherPad: https://etherpad.ietf.org:9009/p/notes-ietf-interim-2020-dmarc-01-dmarc?useMonospaceFont=true
 
 ### Chairs
 * Seth Black seth@valimail.com
@@ -26,5 +26,6 @@ title: DMARC-interim-2020-01
 
 ## Agenda Bashing, Blue Sheets
 
-## DMARC Topics 
+##  Joint DMARC 2.0 Discussion (M3AAWG and IETF)
+
 

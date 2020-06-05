@@ -8,18 +8,13 @@ are set forth in BCP 79; please read it carefully.
 
 As a reminder:
 
-By participating in the IETF, you agree to follow IETF processes
-and policies.  If you are aware that any IETF contribution is covered
-by patents or patent applications that are owned or controlled by
-you or your sponsor, you must disclose that fact, or not participate
-in the discussion.  As a participant in or attendee to any IETF
-activity you acknowledge that written, audio, video, and photographic
-records of meetings may be made public.  Personal information that
-you provide to IETF will be handled in accordance with the IETF
-Privacy Statement.  As a participant or attendee, you agree to work
-respectfully with other participants; please contact the
-[ombudsteam](https://www.ietf.org/contact/ombudsteam/) if you have
-questions or concerns about this.  Definitive information is in the
+* By participating in the IETF, you agree to follow IETF processes and policies.
+* If you are aware that any IETF contribution is covered by patents or patent applications that are owned or controlled by you or your sponsor, you must disclose that fact, or not participate in the discussion.
+* As a participant in or attendee to any IETF activity you acknowledge that written, audio, video, and photographic records of meetings may be made public.
+* Personal information that you provide to IETF will be handled in accordance with the IETF Privacy Statement.
+* As a participant or attendee, you agree to work respectfully with other participants; please contact the ombudsteam (https://www.ietf.org/contact/ombudsteam/) if you have questions or concerns about this.
+
+Definitive information is in the
 documents listed below and other IETF BCPs.  For advice, please
 talk to WG chairs or ADs:
 
