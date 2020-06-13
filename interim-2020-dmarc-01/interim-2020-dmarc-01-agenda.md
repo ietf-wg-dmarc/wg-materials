@@ -15,8 +15,8 @@ title: DMARC-interim-2020-01
 * EtherPad: https://etherpad.ietf.org:9009/p/notes-ietf-interim-2020-dmarc-01-dmarc?useMonospaceFont=true
 
 ### Chairs
-* Seth Black seth@valimail.com
-* Alexey Melnikov aamelnikov@fastmail.fm
+* Seth Blank seth@valimail.com
+* Alexey Melnikov alexey.melnikov@isode.com
 * Tim Wicinski tjw.ietf@gmail.com
 
 ### IESG Overlord

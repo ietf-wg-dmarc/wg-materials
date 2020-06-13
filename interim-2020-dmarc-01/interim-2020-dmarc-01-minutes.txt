@@ -1,0 +1,305 @@
+DMARC WG Meeting - Interim 11 June 2020
+Thursday, June 11, 2020, 16:00-17:00 UTC
+Chairs: Seth Blank, Alexey Melnikov, Tim Wicinski
+
+
+Webex: https://ietf.webex.com/ietf/j.php?MTID=me6b9c2bdf971f0ead8713b4a9c50c975
+Jabber: dmarc@jabber.ietf.org  
+
+
+Etherpad: https://etherpad.ietf.org:9009/p/notes-ietf-interim-2020-dmarc-01-dmarc?useMonospaceFont=true
+
+
+ Agenda: (from https://datatracker.ietf.org/doc/agenda-interim-2020-dmarc-01-dmarc-01/)
+## Agenda Bashing, Blue Sheets
+
+
+## Recap of M3AAWG discussion preceding this interim session
+
+
+##  Joint DMARC 2.0 Discussion (M3AAWG and IETF)
+
+
+List of open DMARC issues:
+https://trac.ietf.org/trac/dmarc/report/1
+
+Notes
+-----
+
+* Reminder of IETF Note Well and IETF policies
+
+* Attendees reminded to sign in
+
+* Summary of M3AAWG Session
+
+* What it means to do DMARC
+
+* Discussion of p=none
+
+* p=none without reporting means ecosystem issues
+
+* Use of pct option; no consensus on its usefulness
+
+* p=quarantine, pct=0 use case
+
+* Ask for DMARC to require both SPF and DKIM pass
+
+* Other failure reporting use cases or requests for changes
+
+* Request for description of Scope of Work for DMARCbis project and how ARC slots in (Dave Crocker)
+
+* Want to make sure DMARC spec is clear and that there is better buy-in from IETF community than first rev
+
+* Work on list of open issues (https://trac.ietf.org/trac/dmarc/report/1)
+
+* Discussion of what it means to implement specific features
+
+* Work on three issues at any given time so as not to overwhelm anyone
+
+* Want to address indirect mail flows as per WG charter, perhaps fold ARC into DMARC
+
+* Request for Murray (scribe lost audio)
+
+* Ensure that the new doc deals with the issues of mailing list breakage
+
+* Ensure that it "passes muster" for IETF consensus
+
+* Barry Leiba - DMARC must deal with mailing list breakage
+
+* Should ARC fold in to DMARC? Barry thinks perhaps not - normative reference instead
+
+* Murray - Doesn't make sense to make ARC formal part of DMARC, but rather make it authentication part
+
+* Operational issues discussed at M3AAWG
+
+* p=quarantine, pct=0
+
+* Jesse Thomspon - Could be rephrased as formalizing header munging
+
+* Would be great to get all mailing lists to munge by default
+
+* Maybe ARC could solve, but no guarantee that all mailing lists support ARC (scribe lost audio) - so there is probably no end to the munging necessity
+
+* Michiel van de Vis (Mimecast) - (scribe lost audio)
+
+* some receivers change how they process messages if they see an enforcement level policy, regardless of pct setting
+
+* they change the 5322.from to their own domain when forwarding (munging)
+
+* affects DMARC reporting back to the original sender (because the reports then go back to the munging receiver)
+
+* Autumn - Common situation; mail to mailing list, message fails SPF and DKIM at terminal destination
+
+* Header munging removes concern that message fails
+
+* Some providers change headers when p=quarantine/reject
+
+* Some mailing list software will only do this if configured to do so (and is sometimes, but not always policy-sensitive)
+
+* p=quarantine, pct=0 allows senders to test what impact will be seen from mailing lists by examining reports, looking for diffs from p=none
+
+* Question from Seth - Is this a bug/feature in DMARC or friction in ecosystem with how DMARC is handled?
+
+* Autumn - Friction, due to inconsistent application across mailing lists; barrier to DMARC adoption
+
+* Question from Seth - If pct were removed, but other method for requesting header munging were available, would that be okay?
+
+* Autumn - Yes
+
+* Scott Kitterman - Challenge is that "header munging not standardized, so discussing it in a standards body may not be appropriate"
+
+* Unlikely that IETF would accept formalization, because there may not be a way to do it "right"
+
+* Alexey - I hear what you're saying, but perhaps at least getting rough consensus from group can drive change
+
+* Seth requests Scott to create issue in Trac
+
+* Scott not sure what to put in the issue
+
+* Kurt Andersen also not clear on content of issue
+
+* Discussion tabled for chairs
+
+* Jan-Pieter Cornet - Something in spec to make sure senders not send messages that break DMARC?
+
+* Kurt Andersen - How do we get spammers/abusers to observe such restriction?
+
+* JPC - Point conceded
+
+* Seth - recommend that discussion point be brought to IETF mailing list
+
+* Scott - If rule is "Don't send mail that fails DMARC, that means no mail to mailing lists, and so I'd delete my DMARC record"
+
+* Kurt - Forcing mailing lists to munge headers will likely not achieve consensus
+
+* Discussion should continue on IETF list
+
+* Dave Crocker
+
+* Need to have clarity on what the problem is; header munging is a symptom of the problem
+
+* Let's be clear on the need, and then figure out how to solve it
+
+* Hannu Aronsson
+
+* Multiple stakeholders have problems with DMARC due to their roles as intermediaries in mail flow (e.g. ISPs forwarding addresses at hosted domains, alumni and personal address forwarding services, mailbox providers forwarding user emails)
+
+* How to solve this problem in meaningful way?
+
+* Tonu Tammer
+
+* DMARC is about sender authenticity, not integrity of content
+
+* Scaling down DKIM requirements to only include headers, not body might solve this problem
+
+* Forensic reports
+
+* How to strip them down and keep them useful
+
+* Autumn - Favors forensic reports, even if stripped down. 
+
+* Prefers full forensic reports, but recognizes privacy concerns. 
+
+* Large orgs benefit from forensic reports, especially if distributed management of systems across orgs
+
+* From address is massive improvement on just aggregate reporting
+
+* Jesse - Autumn explained issue well
+
+* Has same large org problem that Autumn mentioned
+
+* DMARC vendors using SPF macro to glean Return-Path address seems a kludge
+
+* Kurt Andersen 
+
+* To Autumn - Should we be more blatant in spec that forensic reports are whatever you're comfortable sending, with list of items ranging from most useful to least useful?
+
+* Autumn - Yes, and also forensic reports can be useful to provide to takedown vendors for purposes of fighting abuse
+
+* Steve Jones (comment in Webex chat)
+
+* Reduced RUF reports >> no RUF reports
+
+* Perhaps 2-3 degrees of redaction shown in DMARC documentation in appendix or elsewhere in RFCs
+
+* Alex Brotman - Be nice if DMARC had a requirement that SPF not be permissive (e.g., can't do DMARC with +all)
+
+* Seth - Are you seeing operational issues?
+
+* Alex - Some spam issues, but not really operational issues
+
+* Seth - Sounds like it's within WG charter, but perhaps not part of DMARCbis
+
+* Kurt - Doesn't see how making DMARC more complicated with truth table that constitutes pass will help things
+
+* Murray - Might be part of DMARCbis, but Authentication-Results header doesn't currently include SPF policy, so challenges exist to implement
+
+* Jim Fenton (scribe lost audio, so unclear if below notes capture topic accurately)
+
+* Regarding topic of DMARC alignment conflicts with RFC 5322 on the use of the From and Sender header fields
+
+* If users can see domain in From: field, will they act on it?
+
+* If they can't see it, reputation argument does not hold
+
+* Seth - What issue should be in tracker; assigned to Jim to create it
+
+* Tim
+
+* SPF +all might be better in a BCP than in DMARCbis
+
+* Discussion of when to have 108 vs. having another interim session
+
+* Jan-Pieter Cornet
+
+* Is anyone tracking bounces that come back from reports? Amount he's seeing is staggering (approximately 50%)
+
+* Jesse - May be a symptom of reports being most useful during rollout; speculates that domain owners may delete mailbox after rollout
+
+* Seth - Recommend opening discussion on M3AAWG technical list
+
+
+
+
+
+
+
+
+
+
+ 
+Blue Sheet
+----------
+1. Alexey Melnikov, Isode Ltd
+2. Kurt Andersen, LinkedIn
+3. Scott Kitterman, Kitterman Technical Services
+4. Tim Wicinski, 
+5. Seth Blank, Valimail
+6. Murray Kucherawy, Facebook
+7. Todd Herr, Valimail
+8. Dave Crocker, Brandenburg InternetWorking
+9. Barry Leiba, FutureWei
+10. Amelia Andersdotter, CENTR
+11. Alex Brotman, Comcast
+12. Mohammed Zaman, dmarcian
+13. J. Trent Adams, The Force Awakens <3
+14. Jan-Pieter Cornet, XS4ALL Internet
+15. Andrei Robachevsky, ISOC
+16. Carsten Bormann, TZI
+17. Ulrich Wisser, Swedish Internet Foundation
+18. Shuji SAKURABA, IIJ
+19. Isamu Koga, IIJ
+20. Jim Fenton, Altmode Networks
+21. Jesse Thompson, University of Wisconsin-Madison
+22. Hannu Aronsson, iki.fi
+23. Steve Jones, DMARC.org / LinkedIn
+24. Simon Tyler, Mimecast
+25. Michiel van de Vis, Mimecast
+26. Vlad-Marian Marian, Mimecast
+27. Autumn Tyr-Salvia, Agari
+28. Tim Vert, LookingGlass Cyber
+29. Justin Frechette, iContact
+30. Dan Malm, One.com
+31. Shehzad Mirza, Global Cyber Alliance
+32. Madeleine Hardt, Comcast
+33. Yoshitaka Hirano, QUALITIA
+34. Steve Webb, atmail PTY
+35. Jeannine Bos, University of Wisconsin-Madison
+36. Tim Draegen, dmarcian
+37. Steve Atkins, Word to the Wise
+38. Martin Flygenring, One.com
+39. Arne Allisat, 1&1 Mail and Media GmbH
+40. Harri Toivanen, iki.fi
+41. Petri Koistinen, iki.fi
+42. Vaughn Talbert, dmarcian
+43. Ayachika Kitazaki, Softbank
+44. Tomki Camp, dmarcian
+45. Ernest McLeod, dmarcian
+46. Mary Sohn, Shopify
+47. Udeme Ukutt, LinkedIn
+48. Masaki Kase, TwoFive
+49. Adam Gall, Eastlink
+50. Madeline McCaffrey, Valimail
+51. Zachary Sverdrup, Zeta Global
+52. Vittorio Bertola, Open-Xchange
+53. Sebastian Uziuk, GetResponse
+54. Marco Francechetti, Contactlab
+55. Alwin de Bruin, dmarcian
+56. John Bowers, dmarcian
+57. Tobias Mayer, Cisco Systems
+58. Matt Heffelfinger, GoDaddy.com
+59. Zack Aab, Trendline Interactive
+60. Nick Boyadjiev, Community Network Center, Inc.
+61. Malcolm Waltz, LinkedIn
+62. Alice Spencer, Ometria
+63. Tõnu Tammer, CERT-EE
+64. Joseph Rascoe, iContact
+65. Sara Riganti, Contactlab
+66. Scott Rose, NIST
+67. Alessandro Vesely
+68. Dirk Jan Koekkoek, Mimecast
+69. Jon Marburger, Sharpspring
+70. Ned Freed, Oracle
+71. Elizabeth Bartlett, T-Mobile 
+72. Takahiko Suzuki, IIJ
+73. Eline van der Vorm, dmarcian
